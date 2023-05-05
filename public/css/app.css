@@ -1,0 +1,40 @@
+body {
+    background-color: lightblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+Nav {
+    width: 50vw;
+    display: flex;
+    justify-content: space-around;
+}
+
+.flightForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.flightForm > * {
+    margin: 1vh;
+}
+
+.flightTableItem {
+    display: flex;
+    flex-direction: row;
+    border-top: 3px solid white;
+    padding: 1vh;
+}
+
+.flightTableItem > *{
+    border-left: 2px solid white;  
+    padding-left: 1vh;  
+    width: 30vw;
+    text-align: center;
+    
+}
+
+h1 {
+    align-self: center;
+}
