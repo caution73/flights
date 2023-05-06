@@ -6,35 +6,32 @@ class Index extends React.Component {
     const { flights } = this.props
     return(
       <DefaultLayout title="Flights">
-        <div>
-          <ul>
+        <div className="indexHeading">
+          <div>Airline</div>
+          <div>Flight Number</div>
+          <div>Departure Date</div>
+          <div></div>
+        </div>
+          <div className="flightTable">
               {flights.map((flight, i) => {
                   return (
                     <div className="flightTableItem" key={i}>
-                      <div> <a href={`/flights/${flight._id}`}>
-                              {flight.airline}</a>
+                      <div className="airlineLink">
+                              <h4>{flight.airline}</h4>
                       </div>
                       <div>
-                        flight number {" "}{flight.flightNo}
+                        {flight.flightNo}
                       </div>
                       <div>
-                        Departing: {flight.departs.toISOString().slice(0, 16)}
+                        {flight.departs.toISOString().slice(0, 16)}
                       </div>
-                      <div>
-                        <a href="/Show">Details</a>
+                      <div className="detailsLink">
+                        <a href={`/flights/${flight._id}`}>Details</a>
                       </div>
                     </div>
-                      // <li key={i}>
-                      //     <a href={`/flights/${flight._id}`}>
-                      //         {flight.airline}
-                      //     </a> {": "}flight number {" "}
-                      //     {flight.flightNo} <span></span>Departing: {flight.departs.toISOString().slice(0, 16)}<br/>
-                          
-                      // </li>
                   );
               })}
-          </ul>
-        </div>
+          </div>
       </DefaultLayout>
     )
   }

@@ -20,6 +20,20 @@ Nav {
     margin: 1vh;
 }
 
+.indexHeading {
+    display: flex;
+    flex-direction: row;
+    border-top: 3px solid white;
+    padding: 1vh;
+}
+
+.indexHeading > *{
+    padding-left: 1vh;  
+    width: 20vw;
+    text-align: center;
+    
+}
+
 .flightTableItem {
     display: flex;
     flex-direction: row;
@@ -30,11 +44,37 @@ Nav {
 .flightTableItem > *{
     border-left: 2px solid white;  
     padding-left: 1vh;  
-    width: 30vw;
+    width: 20vw;
     text-align: center;
     
 }
 
 h1 {
     align-self: center;
+}
+
+.detailsLink {
+    width: 10vw;
+}
+
+.airlineLink {
+    width: 15vw;
+}
+
+h4 {
+    margin: 0;
+}
+
+td {
+    border: 1px solid black;
+    padding: 1vh;
+    padding-left: 2vh;
+}
+
+td {
+    background-color: lightgray;
+}
+
+.valueTd {
+    background-color: white;
 }

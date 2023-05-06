@@ -1,6 +1,9 @@
 const React = require("react");
 const DefaultLayout = require("./layout/Default");
 
+const airports = ["AUS", "DAL", "LAX", "SAN", "SEA"]
+const airlines = ['Southwest', 'American', 'United']
+
 class New extends React.Component {
   render() {
     return (
@@ -9,19 +12,21 @@ class New extends React.Component {
           <form className="flightForm" action="/flights" method="POST">
             Airline:{" "}
             <select name="airline">
-              <option>Southwest</option>
-              <option>American</option>
-              <option>United</option>
+              {airlines.map((airline) => {
+                return(
+                    <option>{airline}</option>
+                )
+              })}
             </select>
             Flight Number: <input type="text" name="flightNo" />
             Departure Date: <input type="datetime-local" name="departs"></input>
             Departing Airport:{" "}
             <select name="airport">
-              <option value="SAN">SAN</option>
-              <option value="AUS">AUS</option>
-              <option value="DAL">DAL</option>
-              <option value="LAX">LAX</option>
-              <option value="SEA">SEA</option>
+              {airports.map((airport) => {
+                return(
+                    <option>{airport}</option>
+                )
+              })}
             </select>
             <input type="submit" value="Create Flight" />
           </form>

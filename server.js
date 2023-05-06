@@ -83,7 +83,16 @@ app.post('/flights', async (req, res) => {
 
 // Show
 
-
+app.get('/flights/:id', async (req, res) => {
+  try {
+    const foundFlight = await Flight.findById(req.params.id)
+    res.render('Show', {
+      flight: foundFlight
+    });
+  }catch(err) {
+    res.status(400).send(err);
+  }
+});
 
 // setTimeout(() => {
 //     db.close();
