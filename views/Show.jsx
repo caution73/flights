@@ -1,20 +1,14 @@
 const React = require("react");
 const DefaultLayout = require("./layout/Default");
-const Destination = require('../models/destination')
-
-
-
+const Destination = require("../models/destination");
 
 class Show extends React.Component {
   render() {
     const flight = this.props.flight;
-    const destinations = ["AUS", "DAL", "LAX", "SAN", "SEA"]
+    const destinationAirport = ["AUS", "DAL", "LAX", "SAN", "SEA"];
 
-    console.log(flight)
-    console.log(flight.airport)
-    console.log(flight.destination)
+    console.log("Entire flight: " + flight);
 
-    
     return (
       <DefaultLayout>
         <h1> Show Page </h1>
@@ -38,43 +32,36 @@ class Show extends React.Component {
                 {flight.departs.toISOString().slice(0, 16)}
               </td>
             </tr>
-            {/* <tr>
-              <td>
-                Destination Airport
-              </td>
+            <tr>
+              <td>Destination and Arrival Time</td>
               <td className="valueTd">
-                {flight.destination.airport}
+                {flight?.destination?.map((destination) => {
+                  return(
+                    <h4>{destination.airport} - {destination.arrival.toISOString().slice(0, 16)}</h4>
+                    ) 
+                })}
               </td>
             </tr>
-            <tr>
-              <td>
-                Arrival Time
-              </td>
-              <td className="valueTd">
-                {flight.destination.arrival}
-              </td>
-            </tr> */}
           </table>
           <div className="destinationContainer">
-          <form className="destinationForm" action={`/destination/${flight._id}`} method="POST">
-            Set a Destination:{" "}
-            <select name="airport">
-              {destinations.map((airport) => {
-                return(
-                    <option>{airport}</option>
-                )
-              })}
-            </select>
-            Arrival Date: <input type="datetime-local" name="arrival"></input>
-            <input type="submit" value="Update Flight" />
-          </form>
+            <form
+              className="destinationForm"
+              action={`/destination/${flight._id}`}
+              method="POST"
+            >
+              Set a Destination:{" "}
+              <select name="airport">
+                {destinationAirport.map((airport) => {
+                  return <option value={airport}>{airport}</option>;
+                })}
+              </select>
+              Arrival Date: <input type="datetime-local" name="arrival"></input>
+              <input type="submit" value="Add Destination" />
+            </form>
           </div>
-          
-          {/* {flight.destination} */}
         </div>
       </DefaultLayout>
     );
   }
 }
 module.exports = Show;
-

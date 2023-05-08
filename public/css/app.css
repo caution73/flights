@@ -87,7 +87,7 @@ td {
 .destinationContainer {
     padding: 5vh;
     display: flex;
-    flex-direction: center;
+    justify-content: center;
 }
 
 .destinationForm {

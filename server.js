@@ -4,7 +4,7 @@ require('dotenv').config();
 
 const express = require('express')
 const app = express()
-const Flight = require('./models/Flight');
+const Flight = require('./models/flight');
 const Destination = require('./models/destination')
 const db = require('./config/database');
 const methodOverride = require('method-override')
@@ -35,20 +35,6 @@ const myFirstFlight = {
     airline: 'American',
     flightNo: 78,
   };
-
-// Flight.create(myFirstFlight)
-//   // if database transaction succeeds
-//   .then((flight) => {
-//     console.log(flight);
-//   })
-//   // if database transaction fails
-//   .catch((error) => {
-//     console.log(error);
-//   })
-//   // close db connection either way
-//   .finally(() => {
-//     db.close();
-//   });
 
 // Index
 
@@ -104,8 +90,7 @@ app.post('/flights', async (req, res) => {
 
 app.get('/flights/:id', async (req, res) => {
   try {
-    const foundFlight = await Flight.findById(req.params.id)
-    console.log(foundFlight.destination.airport);
+    const foundFlight = await Flight.findById(req.params.id).populate("destination")
     res.render('Show', {
       flight: foundFlight
     });
@@ -119,13 +104,12 @@ app.get('/flights/:id', async (req, res) => {
 
 app.post('/destination/:id', async (req,res) => {
   try {
-    console.log(req.body);
     const newDestination = await Destination.create(req.body)
     const updatedFlight = await Flight.findByIdAndUpdate(req.params.id, 
       {$addToSet: {destination: newDestination._id}},
       {new: true}
       )
-      res.redirect(`/flights/${req.params.id}`)
+      res.redirect(`/flights/${req.params.id}` )
   } catch (error) {
     res.status(400).send(error)
   }
