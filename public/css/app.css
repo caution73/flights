@@ -78,3 +78,19 @@ td {
 .valueTd {
     background-color: white;
 }
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.destinationContainer {
+    padding: 5vh;
+    display: flex;
+    flex-direction: center;
+}
+
+.destinationForm {
+    display: flex;
+    flex-direction: column;
+}

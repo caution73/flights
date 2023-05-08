@@ -1,14 +1,24 @@
 const React = require("react");
 const DefaultLayout = require("./layout/Default");
+const Destination = require('../models/destination')
+
+
+
 
 class Show extends React.Component {
   render() {
     const flight = this.props.flight;
     const destinations = ["AUS", "DAL", "LAX", "SAN", "SEA"]
+
+    console.log(flight)
+    console.log(flight.airport)
+    console.log(flight.destination)
+
+    
     return (
       <DefaultLayout>
         <h1> Show Page </h1>
-        <div>
+        <div className="container">
           <table>
             <tr>
               <td>Airline</td>
@@ -28,10 +38,27 @@ class Show extends React.Component {
                 {flight.departs.toISOString().slice(0, 16)}
               </td>
             </tr>
+            {/* <tr>
+              <td>
+                Destination Airport
+              </td>
+              <td className="valueTd">
+                {flight.destination.airport}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Arrival Time
+              </td>
+              <td className="valueTd">
+                {flight.destination.arrival}
+              </td>
+            </tr> */}
           </table>
-          <form className="destinationForm" action="/flights/:id" method="POST">
+          <div className="destinationContainer">
+          <form className="destinationForm" action={`/destination/${flight._id}`} method="POST">
             Set a Destination:{" "}
-            <select name="destination">
+            <select name="airport">
               {destinations.map((airport) => {
                 return(
                     <option>{airport}</option>
@@ -39,7 +66,10 @@ class Show extends React.Component {
               })}
             </select>
             Arrival Date: <input type="datetime-local" name="arrival"></input>
+            <input type="submit" value="Update Flight" />
           </form>
+          </div>
+          
           {/* {flight.destination} */}
         </div>
       </DefaultLayout>
@@ -47,3 +77,4 @@ class Show extends React.Component {
   }
 }
 module.exports = Show;
+
