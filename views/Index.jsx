@@ -4,6 +4,7 @@ const DefaultLayout = require('./layout/Default')
 class Index extends React.Component {
   render() {
     const { flights } = this.props
+    console.log(flights)
     return(
       <DefaultLayout title="Flights">
         <div className="indexHeading">
@@ -23,7 +24,7 @@ class Index extends React.Component {
                         {flight.flightNo}
                       </div>
                       <div>
-                        {flight.departs.toISOString().slice(0, 16)}
+                        {flight?.departs?.toISOString().slice(0, 16)}
                       </div>
                       <div className="detailsLink">
                         <a href={`/flights/${flight._id}`}>Details</a>
